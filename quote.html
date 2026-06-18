@@ -193,51 +193,29 @@ Mowing
 
 
 <label>
-<input type="checkbox" value="5" class="work">
+<input type="checkbox" class="work" data-type="weeding">
 Weeding
 </label>
 
 
 <label>
 <input type="checkbox" value="5" class="work">
-Snowblowing
+Edging
 </label>
 
-
-<label>
-<input type="checkbox" value="2.5" class="work">
-Raking
-</label>
-
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
-
-
-
-
 
 <button onclick="calculateQuote()">
 Calculate Quote
 </button>
 
-
 <h2 id="price"></h2>
 
-
-
 </div>
-
-
-
-
-
 
 <script>
 
@@ -313,8 +291,20 @@ if (checkedWork.length === 0) {
 
 let workPrice = 0;
 
-checkedWork.forEach(item => {
-    workPrice += Number(item.value);
+document.querySelectorAll(".work:checked").forEach(item => {
+
+    let type = item.getAttribute("data-type");
+
+    if (type === "weeding") {
+
+        if (height === 1) workPrice += 5;
+        else if (height === 2) workPrice += 7.5;
+        else if (height === 3) workPrice += 10;
+
+    } else {
+        workPrice += Number(item.value);
+    }
+
 });
 
 
