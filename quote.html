@@ -272,115 +272,66 @@ if (size == "3000") {
 
 function calculateQuote() {
 
-
-
 let sizeChoice =
 document.getElementById("size").value;
-
-
 
 let height =
 Number(document.getElementById("height").value);
 
-
-
 let sizePrice;
 
-
-
+// SIZE
 if (sizeChoice == "1500") {
-
-
     sizePrice = 15;
-
-
 }
-
-
-
 else if (sizeChoice == "2000") {
-
-
     sizePrice = 24;
-
-
 }
-
-
-
 else {
-
-
     let customSize =
     Number(document.getElementById("customSize").value);
 
-
-
     if (!customSize) {
-
-
         document.getElementById("price").innerHTML =
         "Enter lawn size";
-
-
         return;
-
-
     }
 
-
-
-    sizePrice =
-    (customSize / 100) + 10;
-
-
+    sizePrice = (customSize / 100) + 10;
 }
 
 
+// WORK (IMPORTANT FIX)
+let checkedWork =
+document.querySelectorAll(".work:checked");
 
-
-
+if (checkedWork.length === 0) {
+    document.getElementById("price").innerHTML =
+    "Select at least one service";
+    return;
+}
 
 let workPrice = 0;
 
-
-
-document.querySelectorAll(".work:checked")
-.forEach(item => {
-
-
+checkedWork.forEach(item => {
     workPrice += Number(item.value);
-
-
 });
 
 
-
-
-
-
+// FINAL PRICE
 let quote =
 sizePrice + (height * 5) + workPrice;
 
 
+// ROUNDING
+quote = Math.round(quote / 2.5) * 2.5;
 
 
-
-quote =
-Math.round(quote / 2.5) * 2.5;
-
-
-
-
-
+// OUTPUT
 document.getElementById("price").innerHTML =
 "Estimated Quote: $" + quote.toFixed(2);
 
-
-
-
 }
-
 
 
 </script>
