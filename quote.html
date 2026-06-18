@@ -4,6 +4,7 @@
 <title>Get a Quote - XJ Lawncare</title>
 
 <style>
+
 body {
     margin: 0;
     height: 100vh;
@@ -14,17 +15,20 @@ body {
     background: #f4f8f4;
 }
 
+
 .quote-container {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
+
 .title {
     text-align: center;
     font-size: 32px;
     font-weight: bold;
 }
+
 
 .quote-box {
     display: flex;
@@ -35,16 +39,19 @@ body {
     box-shadow: 0 5px 20px #bbb;
 }
 
+
 .option {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+
 label {
     font-size: 20px;
     font-weight: bold;
 }
+
 
 select, input {
     padding: 12px;
@@ -54,18 +61,22 @@ select, input {
     width: 220px;
 }
 
+
 .services {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+
 .services label {
     font-size: 17px;
     font-weight: normal;
 }
 
+
 button {
+
     background: #228B22;
     color: white;
     border: none;
@@ -73,37 +84,50 @@ button {
     border-radius: 10px;
     font-size: 18px;
     cursor: pointer;
+
 }
+
 
 button:hover {
     background: #176617;
 }
 
+
 #customSize {
     display: none;
 }
 
+
 #price {
     text-align: center;
 }
+
+
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="quote-container">
+
 
 <div class="title">
     Get a Quote
 </div>
 
 
+
 <div class="quote-box">
+
+
 
 <div class="option">
 
 <label>Lawn size:</label>
+
 
 <select id="size" onchange="toggleCustomSize()">
 
@@ -114,18 +138,21 @@ button:hover {
 </select>
 
 
-<input 
+<input
 id="customSize"
 type="number"
 placeholder="Enter sq ft">
 
+
 </div>
+
 
 
 
 <div class="option">
 
 <label>Grass height:</label>
+
 
 <select id="height">
 
@@ -135,46 +162,64 @@ placeholder="Enter sq ft">
 
 </select>
 
+
 </div>
 
 
+
 </div>
+
+
+
 
 
 
 <div class="quote-box">
 
+
 <div class="option">
+
 
 <label>Work required:</label>
 
+
 <div class="services">
+
 
 <label>
 <input type="checkbox" value="2" class="work">
-Mowing (+$2)
+Mowing
 </label>
+
 
 <label>
 <input type="checkbox" value="5" class="work">
-Weeding (+$5)
+Weeding
 </label>
+
 
 <label>
 <input type="checkbox" value="5" class="work">
-Snowblowing (+$5)
+Snowblowing
 </label>
+
 
 <label>
 <input type="checkbox" value="2.5" class="work">
-Raking (+$2.50)
+Raking
 </label>
 
-</div>
 
 </div>
 
+
 </div>
+
+
+</div>
+
+
+
 
 
 
@@ -186,33 +231,52 @@ Calculate Quote
 <h2 id="price"></h2>
 
 
+
 </div>
+
+
+
 
 
 
 <script>
 
+
 function toggleCustomSize() {
+
 
 let size =
 document.getElementById("size").value;
+
 
 let box =
 document.getElementById("customSize");
 
 
-box.style.display =
-size == "3000" ? "block" : "none";
+if (size == "3000") {
+
+    box.style.display = "block";
+
+} else {
+
+    box.style.display = "none";
 
 }
+
+
+}
+
+
 
 
 
 function calculateQuote() {
 
 
+
 let sizeChoice =
 document.getElementById("size").value;
+
 
 
 let height =
@@ -226,47 +290,72 @@ let sizePrice;
 
 if (sizeChoice == "1500") {
 
-sizePrice = 15;
+
+    sizePrice = 15;
+
 
 }
+
+
 
 else if (sizeChoice == "2000") {
 
-sizePrice = 24;
+
+    sizePrice = 24;
+
 
 }
+
+
 
 else {
 
-let customSize =
-Number(document.getElementById("customSize").value);
+
+    let customSize =
+    Number(document.getElementById("customSize").value);
 
 
-if (!customSize) {
 
-document.getElementById("price").innerHTML =
-"Enter lawn size";
+    if (!customSize) {
 
-return;
+
+        document.getElementById("price").innerHTML =
+        "Enter lawn size";
+
+
+        return;
+
+
+    }
+
+
+
+    sizePrice =
+    (customSize / 100) + 10;
+
 
 }
 
 
-sizePrice = (customSize / 100) + 10;
 
-}
 
 
 
 let workPrice = 0;
 
 
+
 document.querySelectorAll(".work:checked")
 .forEach(item => {
 
-workPrice += Number(item.value);
+
+    workPrice += Number(item.value);
+
 
 });
+
+
+
 
 
 
@@ -275,8 +364,12 @@ sizePrice + (height * 5) + workPrice;
 
 
 
-// round to nearest $2.50
-quote = Math.round(quote / 2.5) * 2.5;
+
+
+quote =
+Math.round(quote / 2.5) * 2.5;
+
+
 
 
 
@@ -284,7 +377,11 @@ document.getElementById("price").innerHTML =
 "Estimated Quote: $" + quote.toFixed(2);
 
 
+
+
 }
+
+
 
 </script>
 
