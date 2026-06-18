@@ -1,4 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-    
+<html>
+<head>
+    <title>Get a Quote - XJ Lawncare</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        .quote-box {
+            display: flex;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #aaa;
+        }
+
+        .option {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        select {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            width: 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="quote-box">
+
+    <div class="option">
+        <label>Lawn size:</label>
+        <select>
+            <option>1,000 sq ft</option>
+            <option>1,500 sq ft</option>
+            <option>2,000+ sq ft</option>
+        </select>
+    </div>
+
+
+    <div class="option">
+        <label>Grass height:</label>
+        <select>
+            <option>Short</option>
+            <option>Medium</option>
+            <option>Tall</option>
+        </select>
+    </div>
+
+</div>
+
+</body>
 </html>
