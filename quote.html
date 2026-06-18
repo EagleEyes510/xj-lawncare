@@ -54,6 +54,17 @@ select, input {
     width: 220px;
 }
 
+.services {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.services label {
+    font-size: 17px;
+    font-weight: normal;
+}
+
 button {
     background: #228B22;
     color: white;
@@ -79,7 +90,6 @@ button:hover {
 
 </head>
 
-
 <body>
 
 <div class="quote-container">
@@ -91,7 +101,6 @@ button:hover {
 
 <div class="quote-box">
 
-
 <div class="option">
 
 <label>Lawn size:</label>
@@ -99,9 +108,7 @@ button:hover {
 <select id="size" onchange="toggleCustomSize()">
 
 <option value="1500">1500 or less</option>
-
 <option value="2000">2000</option>
-
 <option value="3000">3000 or more</option>
 
 </select>
@@ -137,22 +144,35 @@ placeholder="Enter sq ft">
 
 <div class="quote-box">
 
-
 <div class="option">
 
 <label>Work required:</label>
 
-<select id="work">
+<div class="services">
 
-<option value="2">Mowing</option>
-<option value="5">Weeding</option>
-<option value="5">Snowblowing</option>
-<option value="2.5">Raking</option>
+<label>
+<input type="checkbox" value="2" class="work">
+Mowing (+$2)
+</label>
 
-</select>
+<label>
+<input type="checkbox" value="5" class="work">
+Weeding (+$5)
+</label>
+
+<label>
+<input type="checkbox" value="5" class="work">
+Snowblowing (+$5)
+</label>
+
+<label>
+<input type="checkbox" value="2.5" class="work">
+Raking (+$2.50)
+</label>
 
 </div>
 
+</div>
 
 </div>
 
@@ -172,7 +192,6 @@ Calculate Quote
 
 <script>
 
-
 function toggleCustomSize() {
 
 let size =
@@ -182,11 +201,8 @@ let box =
 document.getElementById("customSize");
 
 
-if (size == "3000") {
-    box.style.display = "block";
-} else {
-    box.style.display = "none";
-}
+box.style.display =
+size == "3000" ? "block" : "none";
 
 }
 
@@ -203,10 +219,6 @@ let height =
 Number(document.getElementById("height").value);
 
 
-let work =
-Number(document.getElementById("work").value);
-
-
 
 let sizePrice;
 
@@ -214,20 +226,17 @@ let sizePrice;
 
 if (sizeChoice == "1500") {
 
-    sizePrice = 15;
+sizePrice = 15;
 
 }
-
 
 else if (sizeChoice == "2000") {
 
-    sizePrice = 30;
+sizePrice = 24;
 
 }
 
-
 else {
-
 
 let customSize =
 Number(document.getElementById("customSize").value);
@@ -236,7 +245,7 @@ Number(document.getElementById("customSize").value);
 if (!customSize) {
 
 document.getElementById("price").innerHTML =
-"Enter your lawn size";
+"Enter lawn size";
 
 return;
 
@@ -245,13 +254,29 @@ return;
 
 sizePrice = (customSize / 100) + 10;
 
-
 }
 
 
 
+let workPrice = 0;
+
+
+document.querySelectorAll(".work:checked")
+.forEach(item => {
+
+workPrice += Number(item.value);
+
+});
+
+
+
 let quote =
-sizePrice + (height * 5) + work;
+sizePrice + (height * 5) + workPrice;
+
+
+
+// round to nearest $2.50
+quote = Math.round(quote / 2.5) * 2.5;
 
 
 
@@ -260,7 +285,6 @@ document.getElementById("price").innerHTML =
 
 
 }
-
 
 </script>
 
